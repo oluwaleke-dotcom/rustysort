@@ -3,7 +3,7 @@
 RustySort is a Rust-based automation tool that organizes files into folders based on file type.
 
 ## Website
-https://YOUR_USERNAME.github.io/rustysort
+https://oluwaleke-dotcom.github.io/rustysort/
 
 ## Downloads
 - [Linux x86_64 Binary](https://github.com/YOUR_USERNAME/rustysort/releases)
