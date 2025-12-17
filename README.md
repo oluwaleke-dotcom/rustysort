@@ -1,29 +1,13 @@
-# RustySort – Automated File Organizer (Rust)
+# RustySort – Automated File Organizer
 
-RustySort is a fast, safe, and lightweight file‑automation tool written in Rust.  
-It automatically organizes files into categories (Images, Documents, Archives, Music, Code, Other) by scanning a target directory and sorting the files into clean subfolders.
+RustySort is a Rust-based automation tool that organizes files into folders based on file type.
 
-## ✨ Features
-- 🚀 Extremely fast (written in Rust)
-- 📂 Automatically sorts files by type
-- 📦 Creates category folders automatically
-- 🔒 Uses atomic file moves (safe)
-- 🐧 Compiles for Linux (x86_64 & ARM64)
-- 💻 Works on desktops and Raspberry Pi
-- 📝 Generates a readable log of actions
+## Website
+https://YOUR_USERNAME.github.io/rustysort
 
-## 📁 Supported File Categories
-| Category    | Extensions                         |
-|-------------|-------------------------------------|
-| Images      | jpg, jpeg, png, gif                 |
-| Documents   | pdf, docx, txt                      |
-| Archives    | zip, tar, gz                        |
-| Music       | mp3, wav                            |
-| Videos      | mp4, mov                            |
-| Code        | rs, py, js                          |
-| Other       | everything else                     |
+## Downloads
+- [Linux x86_64 Binary](https://github.com/YOUR_USERNAME/rustysort/releases)
+- [ARM64 Binary](https://github.com/YOUR_USERNAME/rustysort/releases)
 
-## 🛠 Installation
-
-### Clone the repository
-```bash
+## Source Code
+Included directly in this repository under `/src`.
