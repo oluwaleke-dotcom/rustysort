@@ -1,0 +1,46 @@
+name: Build Rust Binaries
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Build for Linux Architectures
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        target:
+          - x86_64-unknown-linux-gnu
+          - aarch64-unknown-linux-gnu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Add target
+        run: rustup target add ${{ matrix.target }}
+
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Rename binaries
+        run: |
+          mkdir -p output
+          if [[ "${{ matrix.target }}" == "x86_64-unknown-linux-gnu" ]]; then
+            cp target/${{ matrix.target }}/release/rustysort output/rustysort-x86_64
+          else
+            cp target/${{ matrix.target }}/release/rustysort output/rustysort-arm64
+          fi
+
+      - name: Upload binaries
+        uses: softprops/action-gh-release@v1
+        with:
+          files: output/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
