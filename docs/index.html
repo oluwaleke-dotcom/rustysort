@@ -35,9 +35,7 @@
                 <nav class="flex items-center space-x-8">
                     <a href="#features" class="text-gray-600 hover:text-gray-900">Features</a>
                     <a href="#install" class="text-gray-600 hover:text-gray-900">Install</a>
-                    <button class="bg-orange-600 text-white px-5 py-2 rounded-lg hover:bg-orange-700" href="https://github.com/oluwaleke-dotcom/rustysort/releases/download/v1.0.5/rustysort-x86_64
-
-https://github.com/oluwaleke-dotcom/rustysort/releases/download/v1.0.4/rustysort-aarch64">
+                    <button class="bg-orange-600 text-white px-5 py-2 rounded-lg hover:bg-orange-700">
                         Download
                     </button>
                 </nav>
@@ -55,13 +53,22 @@ https://github.com/oluwaleke-dotcom/rustysort/releases/download/v1.0.4/rustysort
                     A fast Rust tool that sorts your files into categories. Clean up downloads and documents in seconds.
                 </p>
                 
-                <div class="flex gap-4 justify-center">
+                <div id="auto-download" class="flex gap-4 justify-center mb-4">
                     <button class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 font-medium">
                         <i class="fas fa-download mr-2"></i>Download Free
                     </button>
-                    <button class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 font-medium">
+                    <button a href="https://github.com/oluwaleke-dotcom/rustysort/releases/download/v1.0.4/rustysort/" class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 font-medium">
                         <i class="fab fa-github mr-2"></i>GitHub
                     </button>
+                </div>
+        
+                <div class="flex gap-3 justify-center items-center">
+                    <a href="https://github.com/oluwaleke-dotcom/rustysort/releases/download/v1.0.4/rustysort-x86_64" class="border-2 border-orange-600 text-orange-600 hover:bg-orange-50 px-5 py-2.5 rounded-lg font-medium flex items-center gap-2 transition">
+                        <i class="fas fa-download"></i>x86_64
+                    </a>
+                    <a href="https://github.com/oluwaleke-dotcom/rustysort/releases/download/v1.0.4/rustysort-aarch64" class="border-2 border-orange-600 text-orange-600 hover:bg-orange-50 px-5 py-2.5 rounded-lg font-medium flex items-center gap-2 transition">
+                        <i class="fas fa-download"></i>ARM64
+                    </a>
                 </div>
             </div>
         </section>
@@ -120,9 +127,61 @@ https://github.com/oluwaleke-dotcom/rustysort/releases/download/v1.0.4/rustysort
                 <i class="fas fa-folder text-orange-600"></i>
                 <span class="font-bold text-white">RustSort</span>
             </div>
-            <p>© 2025 RustSort.</p>
+            <p>© 2024 RustSort. Open source under MIT License.</p>
         </div>
     </footer>
+<script>
+  function detectOS() {
+    const ua = navigator.userAgent.toLowerCase();
+    const platform = navigator.platform.toLowerCase();
 
+    const downloadDiv = document.getElementById("auto-download");
+
+    // Update these links to the correct version tag
+    const url_x86 = "https://github.com/oluwaleke-dotcom/rustysort/releases/download/v1.0.5/rustysort-x86_64";
+    const url_arm = "https://github.com/oluwaleke-dotcom/rustysort/releases/download/v1.0.5/rustysort-aarch64";
+
+    // Linux x86_64
+    if (platform.includes("linux") && ua.includes("x86_64")) {
+      downloadDiv.innerHTML = `<a class="button" href="${url_x86}">Download for Linux x86_64</a>`;
+      return;
+    }
+
+    // Linux ARM64
+    if (platform.includes("linux") && (ua.includes("aarch64") || ua.includes("arm64"))) {
+      downloadDiv.innerHTML = `<a class="button" href="${url_arm}">Download for Linux ARM64</a>`;
+      return;
+    }
+
+    // Generic Linux fallback
+    if (platform.includes("linux")) {
+      downloadDiv.innerHTML = `
+        <p>Your OS is Linux but CPU architecture is unknown.</p>
+        <a class="button" href="${url_x86}">Linux x86_64</a><br>
+        <a class="button" href="${url_arm}">Linux ARM64</a>
+      `;
+      return;
+    }
+
+    // Windows
+    if (platform.includes("win")) {
+      downloadDiv.innerHTML = `<p>You are on Windows. RustySort binaries are available for Linux only.</p>`;
+      return;
+    }
+
+    // macOS
+    if (platform.includes("mac")) {
+      downloadDiv.innerHTML = `<p>You are on macOS. RustySort binaries are available for Linux only.</p>`;
+      return;
+    }
+
+    // Unknown
+    downloadDiv.innerHTML = `
+      <p>Could not detect your OS. Please choose from the manual downloads below.</p>
+    `;
+  }
+
+  detectOS();
+</script>
 </body>
 </html>
